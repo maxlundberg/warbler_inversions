@@ -28,7 +28,8 @@ plot_low=-2.3
 plot_high=1.2
 
 col_scaff1="light blue"
-col_scaff2="light green"
+
+col_scaff2="seagreen2"
 col_scaff3="lavender"
 
 
@@ -66,20 +67,37 @@ scaffold_fl_bottom=-2.2
 
 #Synteny plot parameters
 scaffold_synteny_top_ww_north=-0.55
-scaffold_synteny_bottom_ww_north=-0.9
+scaffold_synteny_bottom_ww_north=-0.9+0.02
 
 scaffold_synteny_top_cc=-1.2
-scaffold_synteny_bottom_cc=-1.5
+scaffold_synteny_bottom_cc=-1.5+0.02
+
 
 scaffold_synteny_top_fl=-1.8
-scaffold_synteny_bottom_fl=-2.1
+scaffold_synteny_bottom_fl=-2.1+0.02
 
-#synteny_col=rgb(255,165,0,max=255,alpha=125)
+
 synteny_col="lightgoldenrod"
 synteny_col_border="NA"
 synteny_col_border=synteny_col
 
 min_aln=2000
+
+#Repeat colors
+rep_color="blue"
+dupl_interval_color="#999999"
+
+
+
+
+in2mm=25.4
+
+pdf("Figure2.pdf",width=180/in2mm,height=185/in2mm)
+
+
+layout(matrix(1:3, ncol = 1), widths = 1, heights = c(0.5,0.5,0.5,0.5,0.6), respect = FALSE)
+par(mar = c(0.3, 4.1, 2, 2.1))
+
 
 #################################################################################################################################
 
@@ -129,7 +147,7 @@ text(1E6,scaffold_bottom-0.1,"12 (-)",cex=0.7)
 tr_start=interval_size-66660
 tr_end=interval_size
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 ##############
 
@@ -158,15 +176,15 @@ text(mean(c(1,11852059))+cumulative_pos,scaffold_bottom-0.1,"19 (-)",cex=0.7)
 #Start:1-48983 - 1 based
 tr_start=11852059-48963+cumulative_pos
 tr_end=11852059+cumulative_pos
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 #End:11678266-11852059 ~ 174 kb - 1-based
 tr_start=11852059-11852059+cumulative_pos
 tr_end=11852059-11678265+cumulative_pos
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 #Middle: 7978793-7980340 - 1-based (1548 bp)
 tr_start=11852059-7980340+cumulative_pos
 tr_end=11852059-7978793+cumulative_pos
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 #Annotate the two inversion intervals 
 
@@ -205,7 +223,7 @@ text(mean(c(start_scaffold,end_scaffold)),scaffold_bottom-0.1,"11 (-)",cex=0.7)
 #TR:47,665,304-47,735,347 bp
 tr_start=start_scaffold
 tr_end=start_scaffold+end_pos-47665304
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 ##############
 
@@ -277,7 +295,7 @@ text(mean(c(cumulative_pos,end_scaffold)),scaffold_north_bottom-0.1,"156 (+)",ce
 tr_start=cumulative_pos+1
 tr_end=cumulative_pos+1952
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 #TR in the middle - here we can include the gap (1-based)
 #Scaffold156     3675482 3685135
@@ -286,7 +304,7 @@ polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_
 tr_start=cumulative_pos+3675482
 tr_end=cumulative_pos+3743449
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 #Add gap in the middle: 3,685,149-3,742,948
 
@@ -380,7 +398,7 @@ text(1E6,scaffold_cc_bottom-0.1,"6l (-)",cex=0.7)
 tr_start=2E6
 tr_end=2E6-613151
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 #Plot synteny
@@ -419,14 +437,14 @@ text(mean(c(cumulative_pos,cumulative_pos+14E6)),scaffold_cc_bottom-0.1,"7l (-)"
 tr_start=cumulative_pos+19027237-6512120
 tr_end=cumulative_pos+19027237-6952665
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 #Add TR in the central part of the div region: 14900329-15170453 (1-based) ~ 270 kb
 
 tr_start=cumulative_pos+19027237-14900328
 tr_end=cumulative_pos+19027237-15170453
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 #Add TR at the start of the div region. Here there are two close intervals: 
@@ -435,14 +453,14 @@ polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_
 tr_start=cumulative_pos+19027237-18874730
 tr_end=cumulative_pos+19027237-18983007
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border=NA)
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 #2 18989765 - 19027234 (1 based) - 37.5 kb 
 
 tr_start=cumulative_pos+19027237-18989765
 tr_end=cumulative_pos+19027237-19027234
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border=NA)
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 
@@ -508,7 +526,7 @@ text(y=mean(c(scaffold_cc_bottom,scaffold_cc_top)),x=-1E6,"chiffchaff",cex=0.8)
 #end_scaffold=plot_end
 
 polygon(x=c(0,plot_end,plot_end,0),y=c(scaffold_fl_bottom,scaffold_fl_bottom,scaffold_fl_top,scaffold_fl_top),col=col_scaff2,border=NA)
-text(plot_end/2,scaffold_fl_bottom-0.1,"Chromosome 1:62.5-78.6 Mb (+)",cex=0.7)
+text(plot_end/2,scaffold_fl_bottom-0.1,"Chr1:62.5-78.6 Mb (+)",cex=0.7)
 
 #Synteny
 
@@ -633,7 +651,7 @@ text(1E6,scaffold_bottom-0.1,"38 (+)",cex=0.7)
 tr_start=35897021-(35991252-interval_size)
 tr_end=35991244-(35991252-interval_size)
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 text(y=mean(c(scaffold_bottom,scaffold_top)),x=-1E6,"southern",cex=0.8)
 
@@ -671,20 +689,20 @@ text(mean(c(start_scaffold,end_scaffold)),scaffold_bottom-0.1,"61 (-)",cex=0.7)
 #1) Scaffold61:69290087-69302465 (1-based) ~ 12379 bp
 tr_start=69302477-69290087+cumulative_pos
 tr_end=69302477-69302465+cumulative_pos
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 #2) Scaffold61:69204988-69283336 (1-based) ~ 78349 bp
 tr_start=69302477-69204988+cumulative_pos
 tr_end=69302477-69283336+cumulative_pos
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 
 #TR at the other end of the divergent region: 55894452-56078109 (1-based) ~ 183,658 bp
 tr_start=69302477-55894451+cumulative_pos
 tr_end=69302477-56078109+cumulative_pos
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 
 #Add line to show the divergent region - we could define it based on the synteny
@@ -718,7 +736,7 @@ text(1E6,scaffold_north_bottom-0.1,"139 (-)",cex=0.7)
 tr_start=interval_size-3135
 tr_end=interval_size
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 #Synteny 
 chr3_northern_mummer=read.delim("chr3.scaffolds.ww_north.vs.southern_ww.filt.coords.out",header=F)
@@ -759,7 +777,7 @@ text(mean(c(start_scaffold,end_scaffold)),scaffold_north_bottom-0.1,"29b (-)",ce
 tr_start=13167625-(55759505-55759505)+cumulative_pos
 tr_end=13167625-(55767600-55759505)+cumulative_pos
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 
 
@@ -795,7 +813,7 @@ text(mean(c(cumulative_pos,cumulative_pos+interval_size)),scaffold_north_bottom-
 tr_start=55738393-55733727+cumulative_pos 
 tr_end=55738393-55738385+cumulative_pos
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 
 #Synteny 
@@ -854,7 +872,7 @@ text(end/2,scaffold_cc_bottom-0.1,"40l (+)",cex=0.7)
 tr_start=15414192-(29328574-15.5E6)
 tr_end=15858620-(29328574-15.5E6)
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 #ptg000040l:29049553-29328563 (1-based) - 279,011 bp
@@ -862,14 +880,14 @@ polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_
 tr_start=29049552-(29328574-15.5E6)
 tr_end=29328563-(29328574-15.5E6)
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 #Final TR at the very end: 29269249-29328563 (1-based) - 59,315 bp
 
 tr_start=29269249-(29328574-15.5E6)
 tr_end=29328563-(29328574-15.5E6)
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 
@@ -928,7 +946,7 @@ text(mean(c(start,end)),scaffold_cc_bottom-0.1,"26l (+)",cex=0.7)
 tr_start=start
 tr_end=start+251924
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 
 #Synteny
@@ -964,7 +982,7 @@ for(i in c(1:nrow(chr3_cc_mummer_filt_scaff))){
 
 
 polygon(x=c(0,plot_end,plot_end,0),y=c(scaffold_fl_bottom,scaffold_fl_bottom,scaffold_fl_top,scaffold_fl_top),col=col_scaff2,border=col_scaff2)
-text(plot_end/2,scaffold_fl_bottom-0.1,"Chromosome 3: 42.4-60.0 Mb (+)",cex=0.7)
+text(plot_end/2,scaffold_fl_bottom-0.1,"Chr3:42.4-60.0 Mb (+)",cex=0.7)
 
 #Synteny
 
@@ -1048,7 +1066,8 @@ fst_variants_scaff=fst_variants[which(fst_variants$CHROM=="Scaffold0" & as.numer
 #Plot FST for variants 
 
 plot(as.numeric(paste(fst_variants_scaff[,2])),as.numeric(paste(fst_variants_scaff[,3])),xlim=c(plot_start,plot_end),ylim=c(plot_low,plot_high),axes=F,xlab="",ylab="",main="Chromosome 5",pch=fst_variants_pch,col=fst_variants_col)
-axis(2,pos=-2E5,at=c(0:10)/10,cex.axis=0.7)
+#axis(2,pos=-2E5,at=c(0:10)/10,cex.axis=0.7)
+axis(2,pos=-3.5E5,at=c(0:10)/10,cex.axis=0.7)
 
 text(y=0.5,x=-0.8E6,"FST",srt=90,cex=0.8)
 
@@ -1067,7 +1086,7 @@ text(mean(c(plot_start,plot_end)),scaffold_bottom-0.1,"0 (+)",cex=0.7)
 tr_start=212054
 tr_end=328479
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_bottom,scaffold_bottom,scaffold_top,scaffold_top),col=rep_color,border=rep_color)
 
 
 #Add lines representing the two plateaus
@@ -1146,7 +1165,7 @@ polygon(x=c(gap_start,gap_end,gap_end,gap_start),y=c(scaffold_north_bottom,scaff
 tr_start=4634130-4574359
 tr_end=4634130-4551649
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 #Add short stretch of repeat just after the gap
 
@@ -1154,7 +1173,7 @@ tr_start=4634130-4091213
 tr_end=4634130-4087200
 
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=rep_color,border=rep_color)
 
 
 
@@ -1163,13 +1182,13 @@ polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_north_bottom,scaffold_
 start=4634130-4015195
 end=4634130-4046142
 
-polygon(x=c(start,end,end,start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="orange",border="orange")
+polygon(x=c(start,end,end,start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=dupl_interval_color,border=dupl_interval_color)
 
 start=4634130-406748
 end=4634130-437745
 
 
-polygon(x=c(start,end,end,start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col="orange",border="orange")
+polygon(x=c(start,end,end,start),y=c(scaffold_north_bottom,scaffold_north_bottom,scaffold_north_top,scaffold_north_top),col=dupl_interval_color,border=dupl_interval_color)
 
 text(y=mean(c(scaffold_north_bottom,scaffold_north_top)),x=-0.5E6,"northern",cex=0.8)
 
@@ -1211,7 +1230,7 @@ for(i in c(1:nrow(chr5_cc_mummer_filt))){
 tr_start=244213
 tr_end=287315
 
-polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col="red",border="red")
+polygon(x=c(tr_start,tr_end,tr_end,tr_start),y=c(scaffold_cc_bottom,scaffold_cc_bottom,scaffold_cc_top,scaffold_cc_top),col=rep_color,border=rep_color)
 
 text(y=mean(c(scaffold_cc_bottom,scaffold_cc_top)),x=-0.5E6,"chiffchaff",cex=0.8)
 
@@ -1270,94 +1289,13 @@ for(i in c(1:nrow(chr5_flycatcher_mummer_filt))){
 
 text(y=mean(c(scaffold_fl_bottom,scaffold_fl_top)),x=-0.5E6,"flycatcher",cex=0.8)
 
-```
-
-
-
-
-
-# Figure 3
-
-R code to generate Figure 3 - selection signatures in the SPON1 gene
-
-
-```
-#Read gene data, which are simply SPON1 exon and CDS intervals taken from the gene annotation file
-gene_data=read.delim("/proj/snic2020-16-64/max/hifi_data/assemblies/annotation_data/SPON1.intervals.txt",header=F)
-
-
-#Read diversity data
-south_pi=read.delim("freebayes_reseq_southern_hifi_bionano.filt3.decomposed.no_repeat.new.phased.bi_allelic_snps.southern.pi_10kb.out",header=T)
-north_pi=read.delim("freebayes_reseq_southern_hifi_bionano.filt3.decomposed.no_repeat.new.phased.bi_allelic_snps.northern.pi_10kb.out",header=T)
-
-
-#Read XP-nsl data
-xpnsl=read.delim("xpnsl.10kb.out",header=T)
-xpnsl=xpnsl[xpnsl$frac_scores_gt_threshold>=0,]
-
-xpnsl_scaff=xpnsl[which(xpnsl[,1]=="Scaffold0"),]
-
-
-#Read Sweepfinder2 data
-sweepfinder_south=read.delim("Scaffold0.southern.sweepfinder.out",header=T)
-sweepfinder_north=read.delim("Scaffold0.northern.sweepfinder.out",header=T)
-
-
-pdf("Figure3.pdf")
-
-par(mar = c(0.3, 4.1, 0.5, 2.1))
-
-layout(matrix(1:4, ncol = 1), widths = 1, heights = c(0.5,0.5,0.5,0.5), respect = FALSE)
-
-plot(rowMeans(xpnsl_scaff[,2:3]),xpnsl_scaff$frac_scores_gt_threshold,ylim=c(0,1),ylab="fraction of outlier SNPs",type="l",col="green",lwd=2,xlim=c(5.25e5,7.5E5),xaxt="n",xlab="")
-points(rowMeans(xpnsl_scaff[,2:3]),xpnsl_scaff$frac_scores_lt_threshold,type="l",col="blue",lwd=2)
-
-plot(sweepfinder_south$location,sweepfinder_south$LR,col="green",ylab="CLR",xlim=c(5.25e5,7.5E5),type="l",main="",xaxt="n",ylim=c(0,500),lwd=2)
-points(sweepfinder_north$location,sweepfinder_north$LR,col="blue",type="l",lwd=2)
-
-plot(rowMeans(south_pi_scaff[,2:3]),south_pi_scaff$PI,ylim=c(0,0.01),ylab=expression(pi),type="l",col="green",lwd=2,xlim=c(5.25e5,7.5E5),xaxt="n",xlab="")
-points(rowMeans(north_pi_scaff[,2:3]),north_pi_scaff$PI,xlab="position",type="l",col="blue",lwd=2)
-
-par(mar = c(4.1, 4.1, 0.3, 2.1))
-
-plot(NULL,yaxt="n", xlab="position",xlim=c(5.25e5,7.5E5),ylim=c(-0.6,-0.2))
-
-exondata=gene_data[which(gene_data[,2]=="exon"),]
-cdsdata=gene_data[which(gene_data[,2]=="CDS"),]
-gene_color="red"
-
-segments(x0=min(exondata[,3]),x1=max(exondata[,4]),y0=-0.325,y1=-0.325,lwd=2,col=gene_color,border=gene_color)
-
-upper_exon=-0.30
-lower_exon=-0.35
-
-for(i in c(1:nrow(exondata))){
-
-start=exondata[i,3]
-end=exondata[i,4]
-
-polygon(x=c(start,end,end,start),y=c(lower_exon,lower_exon,upper_exon,upper_exon),col=gene_color,border=gene_color)
-
-}
-
-
-upper_cds=-0.275
-lower_cds=-0.375
-
-for(i in c(1:nrow(cdsdata))){
-
-start=cdsdata[i,3]
-end=cdsdata[i,4]
-
-polygon(x=c(start,end,end,start),y=c(lower_cds,lower_cds,upper_cds,upper_cds),col=gene_color,border=gene_color)
-
-}
-
-text(y=-0.425,x=mean(c(min(exondata[,3]),max(exondata[,4])))+500,"SPON1")
-
-
 dev.off()
 ```
+
+
+
+
+
 
 
 
@@ -1442,6 +1380,17 @@ southern2_chromium_norm[,4]=southern2_chromium[,4]/median(southern2_chromium[,4]
 #Set a generic line width parameter
 plot_lwd=2
 
+#Set plot colors
+
+northern_col="blue"
+southern_col="green"
+southern2_col="#AA4499"
+repeat_color="dark blue"
+
+
+plotdir="figures/"
+
+
 #################################################
 
 #Chr1
@@ -1453,9 +1402,10 @@ southern_chromium_scaffold=southern_chromium_norm[which(southern_chromium_norm[,
 southern2_chromium_scaffold=southern2_chromium_norm[which(southern2_chromium_norm[,1]==scaffold),]
 
 #Start
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="green",ylim=c(-0.3,1.5),xlim=c(0,1E5),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - start")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="orange")
+pdf(gsub(" ","",paste(plotdir,"FigureS2.1.pdf")),width=10)
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=southern_col,ylim=c(-0.3,1.5),xlim=c(0,1E5),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - start")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=southern2_col)
 
 #Bed intervals of tandem repeats
 #Scaffold19	0	48983	rnd-5_family-604	7553	-	14.6	2.4	3.1	(11803076)	Unknown	(0)	1598	1	224054
@@ -1463,19 +1413,23 @@ points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,
 
 start=1
 end=48983
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 start=57733+1
 end=58159
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 #Alignment start of northern genome based on mummer 
-abline(v=58074,lty="dotted")
+abline(v=58074,lty="dotted",lwd=2)
+dev.off()
 
-#Mid breakpoint region 
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="green",ylim=c(-0.3,1.5),xlim=c(7.9E6,8.1E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - mid breakpoint region")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],lwd=plot_lwd,type="l",col="orange")
+##########
+#Mid breakpoint region
+
+pdf(gsub(" ","",paste(plotdir,"FigureS2.2.pdf")),width=10) 
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=southern_col,ylim=c(-0.3,1.5),xlim=c(7.9E6,8.1E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - mid breakpoint region")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],lwd=plot_lwd,type="l",col=southern2_col)
 
 #Bed intervals of tandem repeat at this breakpoint:
 #7978401 7978481
@@ -1485,22 +1439,25 @@ points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,
 #First interval
 start=7978401+1
 end=7978481
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 #Last two intervals are overlapping
 start=7978792+1
 end=7980360
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 #Add boundary determined from genome alignment - note that the northern genome is incomplete upstream
-abline(v=7968505,lty="dotted")
-abline(v=7978783,lty="dotted")
+abline(v=7968505,lty="dotted",lwd=2)
+abline(v=7978783,lty="dotted",lwd=2)
+dev.off()
 
 
+##########
 #End
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="green",ylim=c(-0.3,1.5),xlim=c(11.66E6,11.7E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - end")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="orange")
+pdf(gsub(" ","",paste(plotdir,"FigureS2.3.pdf")),width=10)
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern_col,ylim=c(-0.3,1.5),xlim=c(11.66E6,11.7E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold19 (Chr1) - end")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern2_col)
 
 #TR intervals (bed)
 #Scaffold19	11678265	11678329	rnd-5_family-604	241	+	13.7	4.6	0.6	(173730)	Unknown	1192	1231	(367)	229602	*
@@ -1509,11 +1466,11 @@ points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,
 #The two intervals are overlapping
 start=11678265+1
 end=11852059
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 #Northern alignment based on mummer
-abline(v=11680761,lty="dotted")
-
+abline(v=11680761,lty="dotted",lwd=2)
+dev.off()
 
 
 
@@ -1531,16 +1488,17 @@ southern_chromium_scaffold=southern_chromium_norm[which(southern_chromium_norm[,
 southern2_chromium_scaffold=southern2_chromium_norm[which(southern2_chromium_norm[,1]==scaffold),]
 
 #Start
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="green",ylim=c(-0.3,1.5),xlim=c(0.2E6,0.4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - start")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="orange")
+pdf(gsub(" ","",paste(plotdir,"FigureS2.4.pdf")),width=10)
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern_col,ylim=c(-0.3,1.5),xlim=c(0.2E6,0.4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - start")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern2_col)
 
 #Position of tandem repeat array
 #Scaffold0       212053  212092  rnd-6_family-6462       323     -       0.0     0.0     0.0     (66660860)      Unknown (1099)  891     853     156     *
 #Scaffold0       328001  328479  rnd-6_family-6462       3731    -       0.6     0.8     0.8     (66544473)      Unknown (0)     1990    1513    253
 start=212053+1
 end=328479
-polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red")
+polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col=repeat_color,border=repeat_color)
 
 
 #Mummer boundaries
@@ -1548,28 +1506,36 @@ polygon(x=c(start,end,end,start),y=c(-0.2,-0.2,-0.1,-0.1),col="red",border="red"
 #200402	210250	418869	428707	9849	9839	92.06	1	1	Scaffold0	Scaffold68
 #211396	212092	429030	429697	697	668	92.68	1	1	Scaffold0	Scaffold68
 #327097	467392	430047	570373	140296	140327	98.19	1	1	Scaffold0	Scaffold68
-abline(v=200402,lty="dotted")
-abline(v=212092,lty="dotted")
-abline(v=327097,lty="dotted")
+abline(v=200402,lty="dotted",lwd=2)
+abline(v=212092,lty="dotted",lwd=2)
+abline(v=327097,lty="dotted",lwd=2)
+dev.off()
+
+
 
 #Mid part
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="green",ylim=c(0,1.5),xlim=c(3.8E6,4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - mid part")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="orange")
+pdf(gsub(" ","",paste(plotdir,"FigureS2.5.pdf")),width=10)
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern_col,ylim=c(0,1.5),xlim=c(3.8E6,4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - mid part")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern2_col)
 #Mummer boundaries
 #3905830	3915477	4000447	4010209	9648	9763	95.09	1	1	Scaffold0	Scaffold68
 #3917392	3926506	4541627	4532566	9115	9062	95.85	1	-1	Scaffold0	Scaffold68
-abline(v=3905830,lty="dotted")
-abline(v=3917392,lty="dotted")
+abline(v=3905830,lty="dotted",lwd=2)
+abline(v=3917392,lty="dotted",lwd=2)
+dev.off()
 
 #End part
-plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="green",ylim=c(0,1.5),xlim=c(4.3E6,4.4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - end part")
-points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="blue")
-points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col="orange")
+pdf(gsub(" ","",paste(plotdir,"FigureS2.6.pdf")),width=10)
+plot(rowMeans(southern_chromium_scaffold[,2:3]),southern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern_col,ylim=c(0,1.5),xlim=c(4.3E6,4.4E6),xlab="position",ylab="normalized molecule coverage",main="Scaffold0 (Chr5) - end part")
+points(rowMeans(northern_chromium_scaffold[,2:3]),northern_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=northern_col)
+points(rowMeans(southern2_chromium_scaffold[,2:3]),southern2_chromium_scaffold[,4],type="l",lwd=plot_lwd,col=southern2_col)
 #Mummer boundary
 #4358697	4361809	4101323	4098206	3113	3118	95.88	1	-1	Scaffold0	Scaffold68
-abline(v=4361809,lty="dotted")
+abline(v=4361809,lty="dotted",lwd=2)
+dev.off()
 ```
+
 
 # Supplementary Figure 7
 
@@ -2083,3 +2049,87 @@ points(rowMeans(ld_north_scaff[,2:3]),ld_north_scaff[,5],xlab="position",type="l
 
 dev.off()
 ```
+
+# Supplementary Figure 10
+
+R code to generate Supplementary Figure 10 - selection signatures in the SPON1 gene
+
+
+```
+#Read gene data, which are simply SPON1 exon and CDS intervals taken from the gene annotation file
+gene_data=read.delim("/proj/snic2020-16-64/max/hifi_data/assemblies/annotation_data/SPON1.intervals.txt",header=F)
+
+
+#Read diversity data
+south_pi=read.delim("freebayes_reseq_southern_hifi_bionano.filt3.decomposed.no_repeat.new.phased.bi_allelic_snps.southern.pi_10kb.out",header=T)
+north_pi=read.delim("freebayes_reseq_southern_hifi_bionano.filt3.decomposed.no_repeat.new.phased.bi_allelic_snps.northern.pi_10kb.out",header=T)
+
+
+#Read XP-nsl data
+xpnsl=read.delim("xpnsl.10kb.out",header=T)
+xpnsl=xpnsl[xpnsl$frac_scores_gt_threshold>=0,]
+
+xpnsl_scaff=xpnsl[which(xpnsl[,1]=="Scaffold0"),]
+
+
+#Read Sweepfinder2 data
+sweepfinder_south=read.delim("Scaffold0.southern.sweepfinder.out",header=T)
+sweepfinder_north=read.delim("Scaffold0.northern.sweepfinder.out",header=T)
+
+
+pdf("Figure3.pdf")
+
+par(mar = c(0.3, 4.1, 0.5, 2.1))
+
+layout(matrix(1:4, ncol = 1), widths = 1, heights = c(0.5,0.5,0.5,0.5), respect = FALSE)
+
+plot(rowMeans(xpnsl_scaff[,2:3]),xpnsl_scaff$frac_scores_gt_threshold,ylim=c(0,1),ylab="fraction of outlier SNPs",type="l",col="green",lwd=2,xlim=c(5.25e5,7.5E5),xaxt="n",xlab="")
+points(rowMeans(xpnsl_scaff[,2:3]),xpnsl_scaff$frac_scores_lt_threshold,type="l",col="blue",lwd=2)
+
+plot(sweepfinder_south$location,sweepfinder_south$LR,col="green",ylab="CLR",xlim=c(5.25e5,7.5E5),type="l",main="",xaxt="n",ylim=c(0,500),lwd=2)
+points(sweepfinder_north$location,sweepfinder_north$LR,col="blue",type="l",lwd=2)
+
+plot(rowMeans(south_pi_scaff[,2:3]),south_pi_scaff$PI,ylim=c(0,0.01),ylab=expression(pi),type="l",col="green",lwd=2,xlim=c(5.25e5,7.5E5),xaxt="n",xlab="")
+points(rowMeans(north_pi_scaff[,2:3]),north_pi_scaff$PI,xlab="position",type="l",col="blue",lwd=2)
+
+par(mar = c(4.1, 4.1, 0.3, 2.1))
+
+plot(NULL,yaxt="n", xlab="position",xlim=c(5.25e5,7.5E5),ylim=c(-0.6,-0.2))
+
+exondata=gene_data[which(gene_data[,2]=="exon"),]
+cdsdata=gene_data[which(gene_data[,2]=="CDS"),]
+gene_color="red"
+
+segments(x0=min(exondata[,3]),x1=max(exondata[,4]),y0=-0.325,y1=-0.325,lwd=2,col=gene_color,border=gene_color)
+
+upper_exon=-0.30
+lower_exon=-0.35
+
+for(i in c(1:nrow(exondata))){
+
+start=exondata[i,3]
+end=exondata[i,4]
+
+polygon(x=c(start,end,end,start),y=c(lower_exon,lower_exon,upper_exon,upper_exon),col=gene_color,border=gene_color)
+
+}
+
+
+upper_cds=-0.275
+lower_cds=-0.375
+
+for(i in c(1:nrow(cdsdata))){
+
+start=cdsdata[i,3]
+end=cdsdata[i,4]
+
+polygon(x=c(start,end,end,start),y=c(lower_cds,lower_cds,upper_cds,upper_cds),col=gene_color,border=gene_color)
+
+}
+
+text(y=-0.425,x=mean(c(min(exondata[,3]),max(exondata[,4])))+500,"SPON1")
+
+
+dev.off()
+```
+
